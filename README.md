@@ -14,7 +14,8 @@ This repository contains the code to run the trained models of SNUG.
 **(Recommended)** Create virtual environment:
 ```
 python3 -m venv venv
-source venv/bin/activate
+source venv/bin/activate // Ubuntu
+.\venv\Scripts\activate  // Windows
 pip install -r requirements.txt
 ```
 
