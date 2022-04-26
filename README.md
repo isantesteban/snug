@@ -42,3 +42,16 @@ To generate the deformed garment meshes for a given sequence:
 ```sh
 python run_snug.py --motion assets/CMU/07/07_02_poses.npz --garment tshirt  --savedir tmp/07_02
 ```
+
+## Physics-based losses
+
+The `losses/physics.py` contains the implementation of the energies that we use to train our models. The original paper had some typos:
+- The lamé coefficients provided in the paper (`μ=11.1` and `λ=20.9`) were already multiplied by the thickness of the fabric, so multiplying by the thickness again as indicated in Eq 9 would provide incorrect results. The correct value of the lamé coefficients are `μ=2.36e4` and `λ=4.44e4`.  
+
+- Our implementation of the bending energy uses a scaling factor to account for the length of the edges and the area of the triangles. This scaling factor is computed as follows: $scale=\frac{l^2}{4(a_1 + a_2)}$, where $a_1$ and $a_2$ are the areas of the adjacent triangles and $l$ is the length of the shared edge.
+
+## Rendering
+The meshes can be rendered using the Blender scripts of our other projects:
+
+- [https://github.com/isantesteban/vto-learning-based-animation](https://github.com/isantesteban/vto-learning-based-animation)
+- [https://github.com/isantesteban/vto-garment-collisions](https://github.com/isantesteban/vto-garment-collisions)
